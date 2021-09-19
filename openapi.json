@@ -1,0 +1,55 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "CRUD Product RESTful API",
+        "version": "1",
+        "description": "OpenAPI for Product RESTful API",
+        "termsOfService": "https://github.com/MuslimMujahid/simple-rest-api",
+        "contact": {
+            "name": "Muslim",
+            "email": "13518056@std.stei.itb.ac.id",
+            "url": "https://github.com/MuslimMujahid/simple-rest-api"
+        },
+        "license": {
+            "name": "APACHE 2.0",
+            "url": "https://www.apache.org/licences/LICENSE-2.0"
+        }
+    },
+    "servers": [
+        {
+            "description": "Product RESTful API Server",
+            "url": "localhost"
+        }
+    ],
+    "externalDocs": {
+        "description": "Github Kelompok PAT",
+        "url": "https://github.com/MuslimMujahid/simple-rest-api"
+    },
+    "paths": {
+        "/product": {
+            "get": {
+                "summary": "Get all product",
+                "description": "Get all product in database"
+                
+            },
+            "post": {
+                "summary": "Create new product",
+                "description": "Create new product to database"
+            }
+        },
+        "/product/{productId}": {
+            "get": {
+                "summary": "Get detail of a product",
+                "description": "Get attribute detail of a product"
+            },
+            "put": {
+                "summary": "Update existing product",
+                "description": "Update existing product into database"
+            },
+            "delete": {
+                "summary": "Delete existing product",
+                "description": "Delete exsting product from database"
+            }
+        }
+    }
+}
