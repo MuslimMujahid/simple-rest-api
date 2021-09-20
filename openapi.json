@@ -2,8 +2,8 @@
     "openapi": "3.0.3",
     "info": {
         "title": "CRUD Product RESTful API",
-        "version": "1",
         "description": "OpenAPI for Product RESTful API",
+        "version": "1",
         "termsOfService": "https://github.com/MuslimMujahid/simple-rest-api",
         "contact": {
             "name": "Muslim",
@@ -17,8 +17,8 @@
     },
     "servers": [
         {
-            "description": "Product RESTful API Server",
-            "url": "localhost"
+            "url": "http://localhost:5000",
+            "description": "Product RESTful API Server"
         }
     ],
     "externalDocs": {
@@ -28,28 +28,132 @@
     "paths": {
         "/product": {
             "get": {
+                "tags": [
+                  "product"
+                ],
                 "summary": "Get all product",
-                "description": "Get all product in database"
-                
-            },
-            "post": {
-                "summary": "Create new product",
-                "description": "Create new product to database"
+                "description": "Get all product in database",
+                "responses": {
+                  "200": {
+                    "description": "Get Product Success",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string"
+                            },
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/GetProduct"
+                              }
+                            }
+                          }
+                        },
+                        "examples": {
+                          "success": {
+                            "description": "Example get all products",
+                            "value": {
+                              "message": "success",
+                              "data": [
+                                {
+                                  "id": 0,
+                                  "name": "Book",
+                                  "price": 2000
+                                },
+                                {
+                                  "id": 1,
+                                  "name": "Pulpen",
+                                  "price": 3000
+                                },
+                                {
+                                  "id": 2,
+                                  "name": "Pensil",
+                                  "price": 5000
+                                },
+                                {
+                                  "id": 3,
+                                  "name": "Penghapus",
+                                  "price": 5000
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }                    
+                  }
+                }
             }
         },
         "/product/{productId}": {
-            "get": {
-                "summary": "Get detail of a product",
-                "description": "Get attribute detail of a product"
-            },
-            "put": {
-                "summary": "Update existing product",
-                "description": "Update existing product into database"
-            },
-            "delete": {
-                "summary": "Delete existing product",
-                "description": "Delete exsting product from database"
+          "get": {
+            "tags": [
+              "product"
+            ],
+            "summary": "Get product detail",
+            "description": "Get product detail by id",
+            "responses": {
+              "200": {
+                "description": "Success get a product detail",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/GetProduct"
+                          }
+                        }
+                      }
+                    },
+                    "examples": {
+                      "success": {
+                        "description": "Example get all products",
+                        "value": {
+                          "message": "success",
+                          "data": {
+                            "id": 1,
+                            "name": "Pulpen",
+                            "price": 3000
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
+          }
         }
-    }
+    },
+    "components": {
+      "schemas": {
+        "GetProduct": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Product id",
+                "nullable": false
+              },
+              "name": {
+                "type": "string",
+                "nullable": false
+              },
+              "price": {
+                "type": "number",
+                "nullable": false
+              }
+            }
+          }
+        }
+      }
 }
